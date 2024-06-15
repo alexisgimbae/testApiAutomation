@@ -15,9 +15,9 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Test FirstName\", function () {",
-							"    var expectValue = \"Alexis Rodrigo\";",
+							"    var expectValue = \"Juan Perez\";",
 							"    var firstName = pm.response.json().json.FirstName;",
-							"    pm.expect(firstName).to.eql(\"Alexis Rodrigo\");",
+							"    pm.expect(firstName).to.eql(\"Juan Perez\");",
 							"    console.info(\"Expect Value is \" + expectValue + \"\\nNow Value: \" + firstName);",
 							"",
 							"});",
@@ -48,7 +48,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"FirstName\": \"Alexis Rodrigo\",\r\n    \"LastName\": \"Giménez Báez\",\r\n    \"getRandomHight\": {{nombre_variable}}\r\n    \r\n}",
+					"raw": "{\r\n    \"FirstName\": \"Juan Perez\",\r\n    \"LastName\": \"Giménez Báez\",\r\n    \"Peso\": 80,\r\n    \"getRandomHight\": {{nombre_variable}}\r\n    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
