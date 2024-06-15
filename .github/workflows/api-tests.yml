@@ -1,0 +1,30 @@
+name: Run API Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-newman-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install Newman
+      run: npm install -g newman
+
+    - name: Run Newman tests
+      run: newman run httpbin.org.postman_collection.json
+      # Si tienes un archivo de entorno, puedes incluirlo así:
+      # run: newman run path/to/your_collection.json -e path/to/your_environment.json
