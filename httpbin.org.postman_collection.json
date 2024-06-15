@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f0ab7b9f-3944-4628-8604-e45c212a44ed",
+		"_postman_id": "47b8f438-3e44-4395-afa5-3a619776b2ec",
 		"name": "httpbin.org",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "7806025",
-		"_collection_link": "https://www.postman.com/alexisgimbaez/workspace/my-work-api/collection/7806025-f0ab7b9f-3944-4628-8604-e45c212a44ed?action=share&source=collection_link&creator=7806025"
+		"_exporter_id": "7806025"
 	},
 	"item": [
 		{
@@ -15,9 +14,9 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Test FirstName\", function () {",
-							"    var expectValue = \"Juan Perez\";",
+							"    var expectValue = \"Juan Alfred\";",
 							"    var firstName = pm.response.json().json.FirstName;",
-							"    pm.expect(firstName).to.eql(\"Juan Perez\");",
+							"    pm.expect(firstName).to.eql(\"Juan Alfred\");",
 							"    console.info(\"Expect Value is \" + expectValue + \"\\nNow Value: \" + firstName);",
 							"",
 							"});",
@@ -48,7 +47,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"FirstName\": \"Juan Perez\",\r\n    \"LastName\": \"Giménez Báez\",\r\n    \"Peso\": 80,\r\n    \"getRandomHight\": {{nombre_variable}}\r\n    \r\n}",
+					"raw": "{\r\n    \"FirstName\": \"Juan Alfred\",\r\n    \"LastName\": \"Giménez Báez\",\r\n    \"Peso\": 80,\r\n    \"getRandomHight\": {{nombre_variable}}\r\n    \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
