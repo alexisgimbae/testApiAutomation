@@ -25,6 +25,6 @@ jobs:
       run: npm install -g newman
 
     - name: Run Newman tests
-      run: newman run My Collection.postman_collection.json
+      run: newman run New Collection.postman_collection.json
       # Si tienes un archivo de entorno, puedes incluirlo así:
       # run: newman run path/to/your_collection.json -e path/to/your_environment.json
