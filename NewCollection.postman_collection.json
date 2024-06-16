@@ -1,13 +1,13 @@
 {
 	"info": {
 		"_postman_id": "262cf022-31b8-4e57-b699-b773b93348f9",
-		"name": "New Collection",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"name": "NewCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7806025"
 	},
 	"item": [
 		{
-			"name": "TC_001: REGISTRO - REGISTRAR NOMBRE Y APELLIDO",
+			"name": "TC_001: REGISTRO - REGISTRAR NOMBRE Y APELLIDO DEL CLIENTE.",
 			"event": [
 				{
 					"listen": "test",
@@ -37,20 +37,28 @@
 						}
 					}
 				},
-				"url": "{{url_test}}/post"
+				"url": {
+					"raw": "{{url_test}}/post",
+					"host": [
+						"{{url_test}}"
+					],
+					"path": [
+						"post"
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "TC_002: REGISTRO - REGISTRAR PADRES DEL CLIENTE.",
+			"name": "TC_002: REGISTRO - REGISTRAR PADRE DEL CLIENTE.",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"TEST 002: REGISTRO - REGISTRAR PADRES DEL CLIENTE.\", function () {",
-							"    var firstName = pm.response.json().json.FirstName;",
-							"    pm.expect(firstName).to.eql(\"Armindo Peréz\");",
+							"pm.test(\"TEST 002: REGISTRO - REGISTRAR PADRE DEL CLIENTE\", function () {",
+							"    var FatherName = pm.response.json().json.FatherName;",
+							"    pm.expect(FatherName).to.eql(\"Armindo Peréz\");",
 							"});",
 							"",
 							""
@@ -65,38 +73,24 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"FirstName\": \"Armindo Peréz\"\n}",
+					"raw": "{\n    \"FatherName\": \"Armindo Peréz\",\n    \"year\": 43\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "{{url_test}}/post"
+				"url": {
+					"raw": "{{url_test}}/post",
+					"host": [
+						"{{url_test}}"
+					],
+					"path": [
+						"post"
+					]
+				}
 			},
 			"response": []
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
 		}
 	],
 	"variable": [
