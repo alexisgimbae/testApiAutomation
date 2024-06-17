@@ -187,7 +187,7 @@
 						"exec": [
 							"pm.test(\"TEST 005: REGISTRO - REGISTRAR PRIMO DEL CLIENTE\", function () {",
 							"    var primoName = pm.response.json().json.PrimoName;",
-							"    pm.expect(MotherName).to.eql(\"Maria\");",
+							"    pm.expect(primoName).to.eql(\"Maria\");",
 							"});",
 							"",
 							""
