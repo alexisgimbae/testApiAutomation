@@ -144,7 +144,7 @@
 						"exec": [
 							"pm.test(\"TEST 004: REGISTRO - REGISTRAR MADRE DEL CLIENTE\", function () {",
 							"    var MotherName = pm.response.json().json.MotherName;",
-							"    pm.expect(MotherName).to.eql(\"Maria\");",
+							"    pm.expect(MotherName).to.eql(\"Juan Carlos\");",
 							"});",
 							"",
 							""
