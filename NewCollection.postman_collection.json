@@ -177,6 +177,49 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "TC_005: REGISTRO - REGISTRAR PRIMO DEL CLIENTE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"TEST 005: REGISTRO - REGISTRAR PRIMO DEL CLIENTE\", function () {",
+							"    var primoName = pm.response.json().json.PrimoName;",
+							"    pm.expect(MotherName).to.eql(\"Maria\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"PrimoName\": \"Juan Carlos\",\n    \"year\": 25\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_test}}/post",
+					"host": [
+						"{{url_test}}"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"variable": [
