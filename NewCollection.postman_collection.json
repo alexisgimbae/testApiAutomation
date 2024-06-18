@@ -202,7 +202,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"Cel\": \"+595961808172\"\n}",
+					"raw": "{\n    \"Cel\": \"+595961808172\",\n    \"Direccion\": \"sss\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
