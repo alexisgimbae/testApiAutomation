@@ -27,5 +27,5 @@ jobs:
 
     - name: Run Newman tests with HTML reporter
       run: |
-        newman run NewCollection.postman_collection.json -r html
+        newman run NewCollection.postman_collection.json -r html -o /report/reporte.html
 
