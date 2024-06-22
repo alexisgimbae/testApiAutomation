@@ -21,10 +21,11 @@ jobs:
       with:
         node-version: '16'
 
-    - name: Install Newman
-      run: npm install -g newman
+    - name: Install Newman and HTML reporter
+      run: |
+        npm install -g newman newman-reporter-html
 
-    - name: Run Newman tests
-      run: newman run NewCollection.postman_collection.json
-      # Si tienes un archivo de entorno, puedes incluirlo así:
-      # run: newman run path/to/your_collection.json -e path/to/your_environment.json
+    - name: Run Newman tests with HTML reporter
+      run: |
+        newman run NewCollection.postman_collection.json -r html
+
