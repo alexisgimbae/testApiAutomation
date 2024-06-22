@@ -22,10 +22,10 @@ jobs:
         run: |
           npm install -g newman newman-reporter-html
 
-      - name: Run Newman and save HTML report  # Ejecuta Newman y guarda el reporte HTML
+      - name: Run Newman and save HTML report
         run: |
-          mkdir -p ${GITHUB_WORKSPACE}/reports  # Crea el directorio donde se guardará el reporte
-          newman run NewCollection.postman_collection.json -r html --reporter-html-export ${GITHUB_WORKSPACE}/report/reporte.html > /dev/null 2>&1
+          mkdir -p ${GITHUB_WORKSPACE}/reports
+          newman run NewCollection.postman_collection.json -r html --reporter-html-export ${GITHUB_WORKSPACE}/reports/reporte.html > /dev/null 2>&1
 
       - name: Upload HTML report artifact  # Sube el reporte HTML como un artefacto
         uses: actions/upload-artifact@v2
