@@ -1,32 +1,34 @@
-name: Run API Tests
+name: Run Newman Tests and Save HTML Report
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - main  # Define la rama de GitHub que activará este flujo de trabajo
 
 jobs:
-  run-newman-tests:
-    runs-on: ubuntu-latest
+  newman_test:
+    runs-on: ubuntu-latest  # Especifica el sistema operativo en el que se ejecutará
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository  # Paso para clonar el repositorio
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
+      - name: Set up Node.js  # Instala Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Versión de Node.js que deseas usar
 
-    - name: Install Newman and HTML reporter
-      run: |
-        npm install -g newman newman-reporter-html
+      - name: Install Newman and Newman HTML reporter  # Instala Newman y el reportero HTML
+        run: |
+          npm install -g newman newman-reporter-html
 
-    - name: Run Newman tests with HTML reporter
-      run: |
-        newman run NewCollection.postman_collection.json -r html --reporter-html-export /report/reporte.html
+      - name: Run Newman and save HTML report  # Ejecuta Newman y guarda el reporte HTML
+        run: |
+          mkdir -p ${GITHUB_WORKSPACE}/reports  # Crea el directorio donde se guardará el reporte
+          newman run NewCollection.postman_collection.json -r html --reporter-html-export ${GITHUB_WORKSPACE}/reports/reporte.html
 
-
+      - name: Upload HTML report artifact  # Sube el reporte HTML como un artefacto
+        uses: actions/upload-artifact@v2
+        with:
+          name: newman-html-report  # Nombre del artefacto que se muestra en GitHub Actions
+          path: ${GITHUB_WORKSPACE}/reports/reporte.html  # Ruta al reporte HTML que se subirá como artefacto
