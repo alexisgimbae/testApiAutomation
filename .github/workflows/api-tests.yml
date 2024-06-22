@@ -43,4 +43,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: newman-html-report  # Nombre del artefacto que se muestra en GitHub Actions
-          path: ${GITHUB_WORKSPACE}/reports/reporte.html  # Ruta al reporte HTML que se subirá como artefacto
+          path: ${{ github.workspace }}/reports/reporte.html  # Ruta absoluta al reporte HTML que se subirá como artefacto
+          if-no-files-found: error  # Cambiado a 'error' para que falle si no se encuentra el archivo
