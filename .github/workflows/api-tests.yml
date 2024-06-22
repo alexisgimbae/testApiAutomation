@@ -13,6 +13,9 @@ jobs:
       - name: Checkout repository  # Paso para clonar el repositorio
         uses: actions/checkout@v2
 
+      - name: Create reports directory  # Crear directorio "reports" en la raíz del proyecto
+        run: mkdir -p ${GITHUB_WORKSPACE}/reports
+
       - name: Set up Node.js  # Instala Node.js
         uses: actions/setup-node@v2
         with:
@@ -22,13 +25,13 @@ jobs:
         run: |
           npm install -g newman newman-reporter-html
 
-      - name: Run Newman and save HTML report
+      - name: Run Newman and save HTML report  # Ejecuta Newman y guarda el reporte HTML
         run: |
-          mkdir -p ${GITHUB_WORKSPACE}/report
-          newman run NewCollection.postman_collection.json -r html --reporter-html-export ${GITHUB_WORKSPACE}/report/reporte.html > /dev/null 2>&1
+          newman run NewCollection.postman_collection.json -r html --reporter-html-export ${GITHUB_WORKSPACE}/reports/reporte.html > /dev/null 2>&1
 
       - name: Upload HTML report artifact  # Sube el reporte HTML como un artefacto
+        if: success()  # Subir el reporte HTML solo si el paso anterior tiene éxito
         uses: actions/upload-artifact@v2
         with:
           name: newman-html-report  # Nombre del artefacto que se muestra en GitHub Actions
-          path: ${GITHUB_WORKSPACE}/report/reporte.html  # Ruta al reporte HTML que se subirá como artefacto
+          path: ${GITHUB_WORKSPACE}/reports/reporte.html  # Ruta al reporte HTML que se subirá como artefacto
