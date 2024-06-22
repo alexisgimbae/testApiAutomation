@@ -27,7 +27,8 @@ jobs:
 
       - name: Run Newman and save HTML report  # Ejecuta Newman y guarda el reporte HTML
         run: |
-          newman run NewCollection.postman_collection.json -r html --reporter-html-export ${GITHUB_WORKSPACE}/reports/reporte.html > /dev/null 2>&1
+          newman run NewCollection.postman_collection.json -r html --reporter-html-export ${GITHUB_WORKSPACE}/reports/reporte.html
+          ls ${GITHUB_WORKSPACE}/reports  # Lista los archivos en el directorio para verificar la presencia del reporte
 
       - name: Upload HTML report artifact  # Sube el reporte HTML como un artefacto
         if: success()  # Subir el reporte HTML solo si el paso anterior tiene éxito
