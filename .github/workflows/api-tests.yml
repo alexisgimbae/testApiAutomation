@@ -31,4 +31,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: newman-html-report  # Nombre del artefacto que se muestra en GitHub Actions
-          path: ${GITHUB_WORKSPACE}/reports/reporte.html  # Ruta al reporte HTML que se subirá como artefacto
+          path: ${GITHUB_WORKSPACE}/report/reporte.html  # Ruta al reporte HTML que se subirá como artefacto
