@@ -28,13 +28,17 @@ jobs:
       - name: Run Newman and save HTML report  # Ejecuta Newman y guarda el reporte HTML
         run: |
           newman run NewCollection.postman_collection.json -r html --reporter-html-export ${GITHUB_WORKSPACE}/reports/reporte.html
-          ls -l ${GITHUB_WORKSPACE}/reports  # Listar archivos en el directorio reports para verificar
 
-      - name: Display reporte.html content  # Mostrar el contenido del archivo reporte.html para depuración
+      - name: Verify if reporte.html exists  # Verifica si el archivo reporte.html existe
         run: |
-          cat ${GITHUB_WORKSPACE}/reports/reporte.html
+          if [ -f "${GITHUB_WORKSPACE}/reports/reporte.html" ]; then
+            echo "reporte.html found."
+          else
+            echo "reporte.html not found. Exiting."
+            exit 1
+          fi
 
-      - name: Upload HTML report artifact  # Subir el reporte HTML como un artefacto
+      - name: Upload HTML report artifact  # Sube el reporte HTML como un artefacto
         if: success()  # Subir el reporte HTML solo si el paso anterior tiene éxito
         uses: actions/upload-artifact@v2
         with:
