@@ -1,39 +1,36 @@
-name: Run Newman Tests and Save HTML Report
+name: Run Postman Collection with Newman
 
 on:
   push:
     branches:
-      - main  # Define la rama de GitHub que activará este flujo de trabajo
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  newman_test:
-    runs-on: ubuntu-latest  # Especifica el sistema operativo en el que se ejecutará
+  newman-tests:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository  # Paso para clonar el repositorio
-        uses: actions/checkout@v3  # Usa la última versión de la acción de checkout
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js  # Instala Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Versión de Node.js que deseas usar
+          node-version: '18' # Usa la versión de Node.js que prefieras
 
-      - name: Install Newman and Newman HTML reporter  # Instala Newman y el reportero HTML
+      - name: Install Newman and htmlextra
         run: |
           npm install -g newman newman-reporter-htmlextra
 
-      - name: Run Newman and save HTML report  # Ejecuta Newman y guarda el reporte HTML
+      - name: Run Newman collection
         run: |
-          newman run NewCollection.postman_collection.json -r htmlextra --reporter-htmlextra-export ${GITHUB_WORKSPACE}/reporte.html
-          ls -l ${GITHUB_WORKSPACE}  # Listar archivos en el directorio raíz para verificar
+          newman run NewCollection.postman_collection.json -r htmlextra --reporter-htmlextra-export newman-report.html
 
-      - name: Display reporte.html content  # Mostrar el contenido del archivo reporte.html para depuración
-        run: |
-          cat ${GITHUB_WORKSPACE}/reporte.html
-
-      - name: Upload HTML report artifact  # Subir el reporte HTML como un artefacto
-        if: success()  # Subir el reporte HTML solo si el paso anterior tiene éxito
+      - name: Upload HTML report
         uses: actions/upload-artifact@v3
         with:
-          name: newman-html-report  # Nombre del artefacto que se muestra en GitHub Actions
-          path: ${GITHUB_WORKSPACE}/reporte.html  # Ruta al reporte HTML que se subirá como artefacto
+          name: newman-report
+          path: newman-report.html
