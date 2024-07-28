@@ -11,37 +11,32 @@ jobs:
 
     steps:
       - name: Checkout repository  # Paso para clonar el repositorio
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Usa la última versión de la acción de checkout
 
       - name: Create reports directory  # Crear directorio "reports" en la raíz del proyecto
         run: mkdir -p ${GITHUB_WORKSPACE}/reports
 
       - name: Set up Node.js  # Instala Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16'  # Versión de Node.js que deseas usar
 
       - name: Install Newman and Newman HTML reporter  # Instala Newman y el reportero HTML
         run: |
-          npm install -g newman newman-reporter-html
+          npm install -g newman newman-reporter-htmlextra
 
       - name: Run Newman and save HTML report  # Ejecuta Newman y guarda el reporte HTML
         run: |
-          newman run NewCollection.postman_collection.json -r html --reporter-html-export ${GITHUB_WORKSPACE}/reports/reporte.html
+          newman run NewCollection.postman_collection.json -r htmlextra --reporter-htmlextra-export ${GITHUB_WORKSPACE}/reports/reporte.html
+          ls -l ${GITHUB_WORKSPACE}/reports  # Listar archivos en el directorio reports para verificar
 
-      - name: Verify if reporte.html exists  # Verifica si el archivo reporte.html existe
+      - name: Display reporte.html content  # Mostrar el contenido del archivo reporte.html para depuración
         run: |
-          if [ -f "${GITHUB_WORKSPACE}/reports/reporte.html" ]; then
-            echo "reporte.html found."
-          else
-            echo "reporte.html not found. Exiting."
-            exit 1
-          fi
+          cat ${GITHUB_WORKSPACE}/reports/reporte.html
 
-      - name: Upload HTML report artifact  # Sube el reporte HTML como un artefacto
+      - name: Upload HTML report artifact  # Subir el reporte HTML como un artefacto
         if: success()  # Subir el reporte HTML solo si el paso anterior tiene éxito
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: newman-html-report  # Nombre del artefacto que se muestra en GitHub Actions
-          path: ${{ github.workspace }}/reports/reporte.html  # Ruta absoluta al reporte HTML que se subirá como artefacto
-          if-no-files-found: error  # Cambiado a 'error' para que falle si no se encuentra el archivo
+          path: ${GITHUB_WORKSPACE}/reports/reporte.html  # Ruta al reporte HTML que se subirá como artefacto
