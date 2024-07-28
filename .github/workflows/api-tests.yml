@@ -29,10 +29,7 @@ jobs:
         run: |
           newman run NewCollection.postman_collection.json -r htmlextra --reporter-htmlextra-export ${GITHUB_WORKSPACE}/reports/reporte.html
           ls -l ${GITHUB_WORKSPACE}/reports  # Listar archivos en el directorio reports para verificar
-
-      - name: Display reporte.html content  # Mostrar el contenido del archivo reporte.html para depuración
-        run: |
-          cat ${GITHUB_WORKSPACE}/reports/reporte.html
+          cat ${GITHUB_WORKSPACE}/reports/reporte.html  # Mostrar el contenido del archivo para verificar su existencia
 
       - name: Upload HTML report artifact  # Subir el reporte HTML como un artefacto
         if: success()  # Subir el reporte HTML solo si el paso anterior tiene éxito
