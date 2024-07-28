@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "66f98b1e-676b-4264-89ab-3df054121f76",
+		"_postman_id": "6845e6b6-a0d9-4c1d-a35e-96691515d53e",
 		"name": "NewCollection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7806025"
@@ -18,7 +18,9 @@
 							"    pm.expect(firstName).to.eql(\"Juan Peréz\");",
 							"});",
 							"",
-							""
+							"pm.test(\"INVALIDAR A PROPOSITO EL STATUS CODE 200\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
