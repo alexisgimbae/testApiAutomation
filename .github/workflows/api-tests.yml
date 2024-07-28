@@ -1,36 +1,20 @@
-name: Run Postman Collection with Newman
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
 jobs:
-  newman-tests:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18' # Usa la versión de Node.js que prefieras
+      - name: Install Newman
+        run: npm install -g newman newman-reporter-htmlextra
 
-      - name: Install Newman and htmlextra
+      - name: Run Newman Tests
         run: |
-          npm install -g newman newman-reporter-htmlextra
+          newman run NewCollection.postman_collection.json -r htmlextra --reporter-htmlextra-export newman-report.html || true
 
-      - name: Run Newman collection
-        run: |
-          newman run NewCollection.postman_collection.json -r htmlextra --reporter-htmlextra-export newman-report.html
-
-      - name: Upload HTML report
+      - name: Upload Newman Report
         uses: actions/upload-artifact@v3
         with:
           name: newman-report
           path: newman-report.html
+

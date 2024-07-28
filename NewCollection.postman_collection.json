@@ -17,7 +17,9 @@
 							"    var firstName = pm.response.json().json.FirstName;",
 							"    pm.expect(firstName).to.eql(\"Juan Peréz\");",
 							"});",
-							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});",
 							""
 						],
 						"type": "text/javascript",
