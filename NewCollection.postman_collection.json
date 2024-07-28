@@ -18,9 +18,7 @@
 							"    pm.expect(firstName).to.eql(\"Juan Peréz\");",
 							"});",
 							"",
-							"pm.test(\"INVALIDAR A PROPOSITO EL STATUS CODE 200\", function () {",
-							"    pm.response.to.have.status(500);",
-							"});"
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
