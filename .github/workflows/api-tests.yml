@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch: # Permite la ejecución manual del flujo de trabajo
 
 jobs:
   newman-tests:
